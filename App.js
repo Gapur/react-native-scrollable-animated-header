@@ -1,113 +1,75 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
+  Image,
   View,
   Text,
-  StatusBar,
 } from 'react-native';
+import faker from 'faker';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const DATA = Array(10)
+  .fill(null)
+  .map((_, idx) => ({
+    id: idx,
+    avatar: faker.image.avatar(),
+    fullName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+  }));
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+function App() {
+  const renderListItem = (item) => (
+    <View key={item.id} style={styles.card}>
+      <Image style={styles.avatar} source={{uri: item.avatar}} />
+      <Text style={styles.fullNameText}>{item.fullName}</Text>
+    </View>
   );
-};
+
+  return (
+    <SafeAreaView style={styles.saveArea}>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={styles.scrollView}>
+        {DATA.map(renderListItem)}
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
 
 const styles = StyleSheet.create({
+  saveArea: {
+    flex: 1,
+  },
   scrollView: {
-    backgroundColor: Colors.lighter,
+    backgroundColor: '#EFF3FB',
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#402583',
+    backgroundColor: '#ffffff',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 1,
+    borderRadius: 10,
+    marginHorizontal: 12,
+    marginTop: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
   },
-  body: {
-    backgroundColor: Colors.white,
+  avatar: {
+    height: 54,
+    width: 54,
+    resizeMode: 'contain',
+    borderRadius: 54 / 2,
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  fullNameText: {
+    fontSize: 16,
+    marginLeft: 24,
   },
 });
 
