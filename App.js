@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import faker from 'faker';
 
-const HEADER_MAX_HEIGHT = 250;
-const HEADER_MIN_HEIGHT = 54;
+const HEADER_MAX_HEIGHT = 240;
+const HEADER_MIN_HEIGHT = 84;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 const DATA = Array(10)
@@ -26,7 +26,7 @@ function App() {
 
   const headerTranslateY = scrollY.interpolate({
     inputRange: [0, HEADER_SCROLL_DISTANCE],
-    outputRange: [0, -HEADER_SCROLL_DISTANCE + 28],
+    outputRange: [0, -HEADER_SCROLL_DISTANCE],
     extrapolate: 'clamp',
   });
 
@@ -35,7 +35,7 @@ function App() {
     outputRange: [1, 1, 0],
     extrapolate: 'clamp',
   });
-  const imageHeight = scrollY.interpolate({
+  const imageTranslateY = scrollY.interpolate({
     inputRange: [0, HEADER_SCROLL_DISTANCE],
     outputRange: [0, 100],
     extrapolate: 'clamp',
@@ -62,7 +62,7 @@ function App() {
   return (
     <SafeAreaView style={styles.saveArea}>
       <Animated.ScrollView
-        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT - 28}}
+        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT - 32}}
         scrollEventThrottle={16}
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: scrollY}}}],
@@ -77,7 +77,7 @@ function App() {
             styles.headerBackground,
             {
               opacity: imageOpacity,
-              transform: [{translateY: imageHeight}],
+              transform: [{translateY: imageTranslateY}],
             },
           ]}
           source={require('./assets/management.jpg')}
