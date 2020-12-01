@@ -2,7 +2,7 @@
   <img width="300"src="https://github.com/Gapur/react-native-scrollable-animated-header/blob/master/assets/react-native-example.gif">
 </p>
 
-# React-Native-ScrollView-Animated-Header
+# React Native ScrollView Animated Header
 
 React Native Animated Header App with ScrollView
 
