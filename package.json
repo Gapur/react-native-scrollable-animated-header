@@ -2,6 +2,7 @@
   "name": "react-native-scrollview-animated-header",
   "version": "0.0.1",
   "private": true,
+  "description": "React Native Animated Header with ScrollView",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -9,6 +10,22 @@
     "test": "jest",
     "lint": "eslint ."
   },
+  "author": "Gapur Kassym",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gapur/react-native-scrollable-animated-header.git"
+  },
+  "homepage": "https://github.com/Gapur/react-native-scrollable-animated-header/blob/master/README.md",
+  "keywords": [
+    "react",
+    "react-native",
+    "animated",
+    "header",
+    "scrollable",
+    "react-hooks",
+    "javascript"
+  ],
   "dependencies": {
     "faker": "^4.1.0",
     "react": "16.11.0",
